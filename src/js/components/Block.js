@@ -1,5 +1,5 @@
 import React from "react";
-import './Block.css'
+import '../../css/Block.css'
 
 export default class Block extends React.Component {
   constructor() {

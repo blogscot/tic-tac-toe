@@ -1,0 +1,7 @@
+.inline {
+  display: inline-flex;
+}
+.centre {
+  width: 31%;
+  margin: auto;
+}

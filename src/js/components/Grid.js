@@ -1,21 +1,17 @@
 import React from "react";
+import '../../css/Grid.css'
 
 import Col from "./Col";
 
 export default class Grid extends React.Component {
   render() {
-    const style={"display": "inline-flex"}
-    const centreStyle={
-      "width": "31%",
-      "margin": "auto"
-    }
     return (
-      <div style={centreStyle}>
-        <div style={style}>
+      <div className={"centre"}>
+        <div className={"inline"}>
           <Col col={1}/></div>
-        <div style={style}>
+        <div className={"inline"}>
           <Col col={2}/></div>
-        <div style={style}>
+        <div className={"inline"}>
           <Col col={3}/></div>
       </div>
     )
