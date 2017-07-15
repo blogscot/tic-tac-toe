@@ -1,0 +1,17 @@
+.active {
+      background: Gold;
+      width: 100px;
+      height: 100px;
+      margin: 0 2px;
+      border: 1px solid black;
+      display: inline-block;
+    }
+
+.inactive {
+      background: Brown;
+      width: 100px;
+      height: 100px;
+      margin: 0 2px;
+      border: 1px solid black;
+      display: inline-block;
+ }
