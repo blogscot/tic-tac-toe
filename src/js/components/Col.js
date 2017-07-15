@@ -7,9 +7,9 @@ export default class Col extends React.Component {
     let { col } = this.props
     return (
       <div>
-        <Block col={col} row={1} />
-        <Block col={col} row={2} />
-        <Block col={col} row={3} />
+        <Block grid={this.props.grid} col={col} row={0} />
+        <Block grid={this.props.grid} col={col} row={1} />
+        <Block grid={this.props.grid} col={col} row={2} />
       </div>
     )
   }

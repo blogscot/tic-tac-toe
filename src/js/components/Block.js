@@ -2,10 +2,12 @@ import React from "react";
 import '../../css/Block.css'
 
 export default class Block extends React.Component {
-  constructor() {
-    super()
+  componentWillMount() {
+    const row = this.props.row
+    const col = this.props.col
+    const square = this.props.grid[row][col]
     this.state = {
-      active: false,
+      active: square.active
     }
   }
   handleEvent(e) {
@@ -15,7 +17,6 @@ export default class Block extends React.Component {
         active: true
       })
     }
-    // console.log(`${this.props.row}, ${this.props.col}`)
   }
   render() {
     return (

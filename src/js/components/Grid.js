@@ -24,11 +24,11 @@ export default class Grid extends React.Component {
     return (
       <div className={"centre"}>
         <div className={"inline"}>
-          <Col col={1}/></div>
+          <Col grid={this.state.grid} col={0}/></div>
         <div className={"inline"}>
-          <Col col={2}/></div>
+          <Col grid={this.state.grid} col={1}/></div>
         <div className={"inline"}>
-          <Col col={3}/></div>
+          <Col grid={this.state.grid} col={2}/></div>
       </div>
     )
   }
