@@ -1,12 +1,12 @@
 import React from "react";
 
-import Grid from "./Grid";
+import Board from "./Board";
 
 export default class Layout extends React.Component {
   render() {
     return (
       <div>
-        <Grid />
+        <Board />
       </div>
     )
   }
