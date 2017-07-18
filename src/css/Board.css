@@ -1,4 +1,10 @@
- .board {
+.board {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 500px;
+}
+.row {
+  display: inline-flex;
 }
