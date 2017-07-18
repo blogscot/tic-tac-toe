@@ -8,13 +8,39 @@ export default class Board extends React.Component {
     super()
     this.state = { 
       squares: Array(9).fill(null),
+      value: 'O'
      }
   }
 
   handleClick(index) {
       const squares = this.state.squares.slice()
-      squares[index] = 'X'
-      this.setState({ squares: squares })
+      const value = this.state.value === 'X' ? 'O' : 'X'
+
+      if (squares[index] !== null) { return }
+      squares[index] = value
+
+      if (this.checkForWinner(squares)) {
+        console.log(`${value} wins!`)
+      }
+
+      this.setState({ 
+        squares: squares,
+        value: value,
+      })
+  }
+
+  checkForWinner(squares) {
+    const positions = [
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
+    ]
+
+    const results = positions.map(line => 
+      line.every(position => {
+        return squares[position] === 'X' || squares[position] === 'O'
+      }))
+    return !results.every(value => !value)
   }
 
   renderSquare(index) {
