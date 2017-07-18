@@ -16,10 +16,10 @@ export default class Board extends React.Component {
       const squares = this.state.squares.slice()
       const value = this.state.value === 'X' ? 'O' : 'X'
 
-      if (squares[index] !== null) { return }
+      if (this.findWinner(squares) || squares[index] !== null) { return }
       squares[index] = value
 
-      if (this.checkForWinner(squares)) {
+      if (this.findWinner(squares)) {
         console.log(`${value} wins!`)
       }
 
@@ -29,18 +29,19 @@ export default class Board extends React.Component {
       })
   }
 
-  checkForWinner(squares) {
+  findWinner(squares) {
     const positions = [
       [0,1,2],[3,4,5],[6,7,8],
       [0,3,6],[1,4,7],[2,5,8],
       [0,4,8],[2,4,6]
     ]
 
-    const results = positions.map(line => 
-      line.every(position => {
-        return squares[position] === 'X' || squares[position] === 'O'
-      }))
-    return !results.every(value => !value)
+    const isWinner = char => 
+      positions.map(line => 
+        line.every(position => squares[position] === char))
+      .reduce((prev, curr) => prev || curr)
+      
+    return isWinner('X') || isWinner('O')
   }
 
   renderSquare(index) {
