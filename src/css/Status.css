@@ -9,4 +9,7 @@
    height: 38px;
    font-size: 20px;
    text-align: center;
+   background: oldlace;
+   border-radius: 4px;
+   border-style: outset;
  }
