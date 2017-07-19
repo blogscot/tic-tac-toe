@@ -8,3 +8,6 @@
 .row {
   display: inline-flex;
 }
+.status {
+  margin-top: 12px;
+}

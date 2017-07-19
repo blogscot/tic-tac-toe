@@ -1,7 +1,8 @@
-import React from "react";
+import React from "react"
 import '../../css/Board.css'
 
-import Square from "./Square";
+import Square from "./Square"
+import Status from "./Status"
 import { findWinner } from './pure-functions'
 
 export default class Board extends React.Component {
@@ -53,26 +54,27 @@ export default class Board extends React.Component {
     }
     return (
       <div>
-      <div className={"board"}>
-        <div className="row">
+      <div class={"board"}>
+        <div class="row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
           {this.renderSquare(2)}
         </div>
-        <div className="row">
+        <div class="row">
           {this.renderSquare(3)}
           {this.renderSquare(4)}
           {this.renderSquare(5)}
         </div>
-        <div className="row">
+        <div class="row">
           {this.renderSquare(6)}
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
       </div>
-      <div className="board">{status}&nbsp;&nbsp;
-        <button onClick={() => this.resetGame()}>Clear</button>
-      </div>
+      <Status 
+        class="status"
+        status={status} 
+        onClick={() => this.resetGame()}/>
       </div>
     )
   }

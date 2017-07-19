@@ -1,0 +1,12 @@
+.status {
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+ }
+
+ button {
+   width: 70px;
+   height: 38px;
+   font-size: 20px;
+   text-align: center;
+ }
