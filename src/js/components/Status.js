@@ -7,7 +7,7 @@ export default function Status(props) {
     <div>
       <div class="status">{status}&nbsp;&nbsp;
         <button 
-          onClick={() => props.onClick()}>Clear</button>
+          onClick={() => props.onClick()}>Restart</button>
       </div>     
     </div>
   )

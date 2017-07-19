@@ -3,7 +3,7 @@ import '../../css/Board.css'
 
 import Square from "./Square"
 import Status from "./Status"
-import { findWinner } from './pure-functions'
+import { findWinner, movesLeft } from './pure-functions'
 
 export default class Board extends React.Component {
   constructor() {
@@ -34,20 +34,30 @@ export default class Board extends React.Component {
       />
     )
   }
+
+  updateGameStatus() {
+    const squares = this.state.squares
+    const winner = findWinner(squares)
+    let status
+    if (winner) {
+      status = 'Winner : ' + winner
+    } else if (movesLeft(squares)){
+      status = 'Next player: ' + (this.state.value == 'O' ? 'X' : 'O')
+    } else {
+      status = 'Game is drawn'
+    }
+    return status
+  }
+
   resetGame() {
     this.setState({ 
       squares: Array(9).fill(null),
       value: 'O'
      })
   }
+
   render() {
-    const winner = findWinner(this.state.squares)
-    let status
-    if (winner) {
-      status = 'Winner : ' + winner
-    } else {
-      status = 'Next player: ' + (this.state.value == 'O' ? 'X' : 'O')
-    }
+    let status = this.updateGameStatus()
     return (
       <div>
       <div class={"board"}>
