@@ -7,8 +7,8 @@ export function findWinner(squares) {
 
     for (let seq of positions) {
       let [a, b, c] = seq
-      if (squares[a] == squares[b] && 
-          squares[a] == squares[c] && 
+      if (squares[a] !== null &&
+          squares[a] == squares[b] &&
           squares[b] == squares[c])
       return squares[a]
       }
