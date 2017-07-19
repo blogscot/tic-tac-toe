@@ -2,6 +2,7 @@ import React from "react";
 import '../../css/Board.css'
 
 import Square from "./Square";
+import { findWinner } from './pure-functions'
 
 export default class Board extends React.Component {
   constructor() {
@@ -15,11 +16,10 @@ export default class Board extends React.Component {
   handleClick(index) {
       const squares = this.state.squares.slice()
       const value = this.state.value === 'X' ? 'O' : 'X'
-
-      if (this.findWinner(squares) || squares[index] !== null) { return }
+      if (squares[index] !== null) { return }
       squares[index] = value
 
-      if (this.findWinner(squares)) {
+      if (findWinner(squares)) {
         console.log(`${value} wins!`)
       }
 
@@ -27,21 +27,6 @@ export default class Board extends React.Component {
         squares: squares,
         value: value,
       })
-  }
-
-  findWinner(squares) {
-    const positions = [
-      [0,1,2],[3,4,5],[6,7,8],
-      [0,3,6],[1,4,7],[2,5,8],
-      [0,4,8],[2,4,6]
-    ]
-
-    const isWinner = char => 
-      positions.map(line => 
-        line.every(position => squares[position] === char))
-      .reduce((prev, curr) => prev || curr)
-      
-    return isWinner('X') || isWinner('O')
   }
 
   renderSquare(index) {
@@ -52,9 +37,22 @@ export default class Board extends React.Component {
         />
     )
   }
-  
+  resetGame() {
+    this.setState({ 
+      squares: Array(9).fill(null),
+      value: 'O'
+     })
+  }
   render() {
+    const winner = findWinner(this.state.squares)
+    let status
+    if (winner) {
+      status = 'Winner : ' + winner
+    } else {
+      status = 'Next player: ' + (this.state.value == 'O' ? 'X' : 'O')
+    }
     return (
+      <div>
       <div className={"board"}>
         <div className="row">
           {this.renderSquare(0)}
@@ -71,6 +69,10 @@ export default class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
+      </div>
+      <div className="board">{status}&nbsp;&nbsp;
+        <button onClick={() => this.resetGame()}>Clear</button>
+      </div>
       </div>
     )
   }
