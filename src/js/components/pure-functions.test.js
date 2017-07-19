@@ -1,5 +1,4 @@
-import { findWinner } from './pure-functions'
-
+import { findWinner, movesLeft } from './pure-functions'
 
 describe('Find a winner', () => {
   test('find a winner on first row', () => {
@@ -42,4 +41,23 @@ describe('Find a winner', () => {
     expect(findWinner(squares)).toBe('O')
   })
 
+})
+
+describe('Moves left?', () => {
+  test('A non-empty board has moves left', () => {
+    let squares = ['X','X','X',
+                   null,null,null,
+                   null,null,null]
+
+    expect(movesLeft(squares)).toBeTruthy()
+    })
+
+  test('An empty board has no moves left', () => {
+    let squares = ['X','X','X',
+                   'X','X','X',
+                   'X','X','X'
+                  ]
+
+    expect(movesLeft(squares)).toBeFalsy()
+    })    
 })

@@ -1,3 +1,4 @@
+// Examines a board to determine if a player has won
 export function findWinner(squares) {
     const positions = [
       [0,1,2],[3,4,5],[6,7,8],
@@ -13,4 +14,9 @@ export function findWinner(squares) {
       return squares[a]
       }
     return null
+  }
+
+  // Returns true if the board has remaining empty squares
+  export function movesLeft(squares) {
+    return squares.indexOf(null) !== -1
   }
