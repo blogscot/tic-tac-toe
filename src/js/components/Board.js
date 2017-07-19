@@ -20,10 +20,6 @@ export default class Board extends React.Component {
       if (squares[index] !== null) { return }
       squares[index] = value
 
-      if (findWinner(squares)) {
-        console.log(`${value} wins!`)
-      }
-
       this.setState({ 
         squares: squares,
         value: value,
