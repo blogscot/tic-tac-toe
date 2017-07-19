@@ -34,7 +34,7 @@ export default class Board extends React.Component {
       <Square
         value={this.state.squares[index]} 
         onClick={() => this.handleClick(index)}
-        />
+      />
     )
   }
   resetGame() {

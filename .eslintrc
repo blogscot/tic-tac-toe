@@ -1,1 +1,10 @@
-{ "parserOptions": { "ecmaVersion": 6 } }
+{ 
+  "rules" : {
+      "no-unused-vars" : 2,
+      "no-undef" : 2
+  },
+  "parserOptions": { 
+    "ecmaVersion": 2015,
+    "sourceType": "module"
+  } 
+}
