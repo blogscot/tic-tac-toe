@@ -1,17 +1,16 @@
 {
   "rules": {
-        // enable additional rules
-        "quotes": ["error", "single"],
-        "eqeqeq": "warn",
-        "complexity": "warn",
-        "indent": ["error", 2],
-        "no-undefined": "warn"
-  },   
+    "quotes": ["warn", "single"],
+    "eqeqeq": "warn",
+    "complexity": "warn",
+    "indent": ["error", 2],
+    "no-undefined": "warn"
+  },
   "parserOptions": { 
     "ecmaVersion": 2015,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
-  } 
+  }
 }
