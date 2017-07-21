@@ -3,7 +3,11 @@ import '../../css/Board.css'
 
 import Square from './Square'
 import Status from './Status'
-import { findWinner, movesLeft, updateGameStatus } from './pure-functions'
+import { 
+  findWinner, 
+  movesLeft,
+  nextPlayer,
+  updateGameStatus } from './pure-functions'
 
 export default class Board extends React.Component {
   constructor() {
@@ -14,9 +18,10 @@ export default class Board extends React.Component {
     }
   }
 
+
   handleClick(index) {
     const squares = this.state.squares.slice()
-    const currentPlayer = this.state.currentPlayer === 'X' ? 'O' : 'X'
+    const currentPlayer = nextPlayer(this.state.currentPlayer)
     if (squares[index] !== null) { return }
     squares[index] = currentPlayer
 

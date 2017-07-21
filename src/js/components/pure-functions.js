@@ -21,14 +21,17 @@ export function movesLeft(squares) {
   return squares.indexOf(null) !== -1
 }
 
+export function nextPlayer(currentPlayer) {
+  return currentPlayer === 'X' ? 'O' : 'X'
+}
 
 export function updateGameStatus(squares, currentPlayer) {
   const winner = findWinner(squares)
   let status
   if (winner) {
-    status = 'Winner : ' + winner
+    status = 'Winner: ' + winner
   } else if (movesLeft(squares)){
-    status = 'Next player: ' + (currentPlayer === 'O' ? 'X' : 'O')
+    status = 'Next player: ' + nextPlayer(currentPlayer)
   } else {
     status = 'Game is drawn'
   }
