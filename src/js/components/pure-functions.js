@@ -1,22 +1,37 @@
 // Examines a board to determine if a player has won
 export function findWinner(squares) {
-    const positions = [
-      [0,1,2],[3,4,5],[6,7,8],
-      [0,3,6],[1,4,7],[2,5,8],
-      [0,4,8],[2,4,6]
-    ]
+  const positions = [
+    [0,1,2],[3,4,5],[6,7,8],
+    [0,3,6],[1,4,7],[2,5,8],
+    [0,4,8],[2,4,6]
+  ]
 
-    for (let seq of positions) {
-      let [a, b, c] = seq
-      if (squares[a] !== null &&
-          squares[a] == squares[b] &&
-          squares[b] == squares[c])
+  for (let seq of positions) {
+    let [a, b, c] = seq
+    if (squares[a] !== null &&
+        squares[a] === squares[b] &&
+        squares[b] === squares[c])
       return squares[a]
-      }
-    return null
   }
+  return null
+}
 
-  // Returns true if the board has remaining empty squares
-  export function movesLeft(squares) {
-    return squares.indexOf(null) !== -1
+// Returns true if the board has remaining empty squares
+export function movesLeft(squares) {
+  return squares.indexOf(null) !== -1
+}
+
+
+export function updateGameStatus(squares, currentPlayer) {
+  const winner = findWinner(squares)
+  let status
+  if (winner) {
+    status = 'Winner : ' + winner
+  } else if (movesLeft(squares)){
+    status = 'Next player: ' + (currentPlayer === 'O' ? 'X' : 'O')
+  } else {
+    status = 'Game is drawn'
   }
+  return status
+}
+
