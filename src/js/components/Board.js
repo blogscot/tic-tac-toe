@@ -14,21 +14,19 @@ export default class Board extends React.Component {
     super()
     this.state = {
       squares: Array(9).fill(null),
-      currentPlayer: 'O'
+      currentPlayer: 'O',
+      oMovesCount: 0,
     }
   }
 
-
   handleClick(index) {
+    // React relies on immutable updates, so make a copy
     const squares = this.state.squares.slice()
     const currentPlayer = nextPlayer(this.state.currentPlayer)
     if (squares[index] !== null) { return }
     squares[index] = currentPlayer
 
-    this.setState({
-      squares: squares,
-      currentPlayer: currentPlayer,
-    })
+    this.setState({ squares, currentPlayer })
   }
 
   renderSquare(index) {
