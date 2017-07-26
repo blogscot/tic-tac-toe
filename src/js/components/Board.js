@@ -49,7 +49,7 @@ export default class Board extends React.Component {
     let status = updateGameStatus(this.state.squares, this.state.currentPlayer)
     return (
       <div>
-        <div class={'board'}>
+        <div>
           <div class="row">
             {this.renderSquare(0)}
             {this.renderSquare(1)}
