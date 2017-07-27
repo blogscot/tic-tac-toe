@@ -5,7 +5,7 @@ export default function Square(props) {
   return (
     <div 
       class={'active'}
-      onClick={() => props.onClick() }>
+      onClick={() => props.onClick()}>
       {props.currentPlayer}
     </div>
   )
