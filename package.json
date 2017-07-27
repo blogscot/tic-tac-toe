@@ -15,6 +15,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "history": "^1.17.0",
     "react": "^0.14.9",
+    "react-bootstrap": "^0.31.1",
     "react-dom": "^0.14.9",
     "react-router": "^1.0.3",
     "webpack": "^1.15.0",
@@ -31,6 +32,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --content-base src --inline --hot",
+    "start": "npm-run-all --parallel open:src dev",
     "test": "jest"
   },
   "author": "",
