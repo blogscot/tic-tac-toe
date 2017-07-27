@@ -1,6 +1,8 @@
 import React from 'react'
 import '../../css/Status.css'
 
+import PropTypes from 'prop-types'
+
 export default function Status(props) {
   const status = props.status
   return (
@@ -11,4 +13,9 @@ export default function Status(props) {
       </div>
     </div>
   )
+}
+
+Status.propTypes = {
+  status: PropTypes.string,
+  onClick: PropTypes.func
 }
