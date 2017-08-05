@@ -23,7 +23,7 @@ export default class Board extends React.Component {
     // React relies on immutable updates, so make a copy
     const squares = this.state.squares.slice()
     const currentPlayer = nextPlayer(this.state.currentPlayer)
-    if (squares[index] !== null) { return }
+    if (squares[index] || findWinner(squares)) { return }
     squares[index] = currentPlayer
 
     this.setState({ squares, currentPlayer })

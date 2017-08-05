@@ -1,4 +1,8 @@
-// Examines a board to determine if a player has won
+/*
+ Examines a board to determine if a player has won
+ 
+ Returns 'X', 'O' or null
+ */
 export function findWinner(squares) {
   const positions = [
     [0,1,2],[3,4,5],[6,7,8],
