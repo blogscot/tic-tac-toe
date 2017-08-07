@@ -7,17 +7,15 @@ const NumberOfPlayers = ({ singlePlayerMode, onClick }) => {
       onClick={onClick} 
       style={playersStyle}>
       Mode:
-      {' '}
       { singlePlayerMode 
-        ? <a href="#">Single Player</a>
-        : <a href="#">Two Player</a> }
+        ? <a href="#"> Single Player</a>
+        : <a href="#"> Two Player</a> }
     </p>
   )
 }
 
 let playersStyle = {
-  width: '15%',
-  margin: 'auto',
+  textAlign: 'center', 
   marginBottom: '10px',
   fontSize: '16px'
 }
