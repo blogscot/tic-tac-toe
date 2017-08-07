@@ -15,8 +15,7 @@ export default class Board extends React.Component {
     this.state = {
       squares: Array(9).fill(null),
       singlePlayerMode: true,
-      currentPlayer: 'O',
-      oMovesCount: 0,
+      currentPlayer: 'O'
     }
   }
   playerTurn(index) {

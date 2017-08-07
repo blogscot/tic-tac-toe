@@ -1,10 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Button } from 'react-bootstrap'
 
-import PropTypes from 'prop-types'
-
-export default function Status(props) {
-  const status = props.status
+export default function Status({status}) {
   return (
     <div>
       <div style={nextPlayerStyle}>{status}</div>     
@@ -24,6 +22,6 @@ let nextPlayerStyle = {
 }
 
 Status.propTypes = {
-  status: PropTypes.string,
-  onClick: PropTypes.func
+  status: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
 }
