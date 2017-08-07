@@ -1,20 +1,19 @@
 import React from 'react'
-
 import PropTypes from 'prop-types'
 
-export default function Square(props) {
+export default function Square({contents, onClick}) {
   return (
     <div 
       style={squareStyle}
-      onClick={() => props.onClick()}>
-      {props.currentPlayer}
+      onClick={onClick}>
+      {contents}
     </div>
   )
 }
 
 Square.propTypes = {
-  currentPlayer: PropTypes.string,
-  onClick: PropTypes.func
+  contents: PropTypes.string,  // each square value is initially null
+  onClick: PropTypes.func.isRequired
 }
 
 let squareStyle = {

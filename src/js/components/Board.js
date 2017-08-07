@@ -14,11 +14,12 @@ export default class Board extends React.Component {
     super()
     this.state = {
       squares: Array(9).fill(null),
+      singlePlayerMode: true,
       currentPlayer: 'O',
       oMovesCount: 0,
     }
   }
-  handleClick(index) {
+  playerTurn(index) {
     // React relies on immutable updates, so make a copy
     const squares = this.state.squares.slice()
     const currentPlayer = nextPlayer(this.state.currentPlayer)
@@ -27,11 +28,16 @@ export default class Board extends React.Component {
 
     this.setState({ squares, currentPlayer })
   }
+  toggleSinglePlayerMode() {
+    this.setState({
+      singlePlayerMode: !this.state.singlePlayerMode
+    })
+  }
   renderSquare(index) {
     return ( 
       <Square
-        currentPlayer={this.state.squares[index]}
-        onClick={() => this.handleClick(index)}
+        onClick={() => this.playerTurn(index)}
+        contents={this.state.squares[index]}
       />
     )
   }
@@ -45,7 +51,10 @@ export default class Board extends React.Component {
     let status = updateGameStatus(this.state.squares, this.state.currentPlayer)
     return (
       <div>
-        <Players />
+        <Players 
+          onClick={this.toggleSinglePlayerMode.bind(this)}
+          singlePlayerMode={this.state.singlePlayerMode}
+        />
         <div>
           <div style={rowStyle}>
             {this.renderSquare(0)}
