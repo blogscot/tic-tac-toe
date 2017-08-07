@@ -5,6 +5,7 @@ import {
   updateGameStatus } from './pure-functions'
 
 describe('Find a winner', () => {
+
   test('find a winner on first row', () => {
     let squares = [
       'X','X','X',
@@ -49,6 +50,16 @@ describe('Find a winner', () => {
 
     expect(findWinner(squares)).toBe('O')
   })
+
+  test('a game without a winner', () => {
+    let squares = [
+      'X','X','O',
+      'O','O','X',
+      'X','O','X']
+
+    expect(findWinner(squares)).toBeFalsy()
+  })
+
 })
 
 describe('Moves left?', () => {
@@ -61,7 +72,7 @@ describe('Moves left?', () => {
     expect(movesLeft(squares)).toBeTruthy()
   })
 
-  test('An empty board has no moves left', () => {
+  test('A full board has no moves left', () => {
     let squares = [
       'X','X','X',
       'X','X','X',

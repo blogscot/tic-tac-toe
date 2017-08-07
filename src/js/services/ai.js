@@ -3,33 +3,37 @@ import {
   movesLeft, 
   nextPlayer } from '../components/pure-functions'
 
-export class GridComputer {
-  constructor (grid, player) {
-    this.bestChoise = null
-    this.minimax(grid, player, 0)
-    return this.bestChoise
+/* 
+  GameAI calculates the optimal position for either player,
+  'X' or 'O' upon constuction.
+*/
+
+export class GameAI {
+  constructor (game, player) {
+    this.bestMove = null
+    this.minimax(game, player, 0)
   }
 
-  minimax (grid, player, depth) {
-    let winnerResult = findWinner(grid)
+  minimax (game, player, depth = 0) {
+    let winnerResult = findWinner(game)
 
     if (winnerResult !== null) {
-      return this.getScore(winnerResult, player, depth)
+      return this.getScore(winnerResult, depth)
     }
 
-    if (!movesLeft(grid)) {
+    if (!movesLeft(game)) {
       return 0
     }
 
-    let availableMoves = this.getFreePositions(grid)
+    let availableMoves = this.getFreePositions(game)
     let stack = []
-    let oppositePlayer = nextPlayer(player)
+    let opponent = nextPlayer(player)
 
     availableMoves.forEach(move => {
-      let clonedGrid = grid.slice()
-      clonedGrid[move] = player
+      let clonedGame = game.slice()
+      clonedGame[move] = player
 
-      let result = this.minimax(clonedGrid, oppositePlayer, depth + 1)
+      let result = this.minimax(clonedGame, opponent, depth + 1)
       stack.push(result)
     })
 
@@ -45,13 +49,12 @@ export class GridComputer {
     }
 
     if (depth === 0 && player === 'X') {
-      this.bestChoise = optimalMove
+      this.bestMove = optimalMove
     }
     return result
   }
   
-  // TODO remove unused player
-  getScore (result, player, depth) {
+  getScore (result, depth) {
     if (result === 'X') {
       return 10 - depth
     } else if (result === null) {
