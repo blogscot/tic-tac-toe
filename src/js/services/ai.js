@@ -8,7 +8,7 @@ import {
   'X' or 'O' upon constuction.
 */
 
-export class GameAI {
+export default class GameAI {
   constructor (game, player) {
     this.bestMove = null
     this.minimax(game, player, 0)

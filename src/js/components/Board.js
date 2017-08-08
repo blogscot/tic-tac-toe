@@ -3,6 +3,7 @@ import React from 'react'
 import Square from './Square'
 import Status from './Status'
 import Players from './Players'
+import GameAI from '../services/ai'
 import { 
   findWinner, 
   movesLeft,
@@ -21,11 +22,28 @@ export default class Board extends React.Component {
   playerTurn(index) {
     // React relies on immutable updates, so make a copy
     const squares = this.state.squares.slice()
-    const currentPlayer = nextPlayer(this.state.currentPlayer)
-    if (squares[index] || findWinner(squares)) { return }
-    squares[index] = currentPlayer
+    const singlePlayerMode = this.state.singlePlayerMode
 
+    if (squares[index] || findWinner(squares)) { return }
+
+    let currentPlayer = singlePlayerMode 
+      ? nextPlayer(this.state.currentPlayer)
+      : 'X'
+    
+    squares[index] = currentPlayer
     this.setState({ squares, currentPlayer })
+
+    // In two player mode human player gets to go first
+    if (!singlePlayerMode) {
+      let delay = Math.floor(Math.random() * 1000) + 300
+      const computerTurn = (squares, currentPlayer) => {
+        let {bestMove} = new GameAI(squares, 'X')
+        squares[bestMove] = 'O'
+        this.setState({squares, currentPlayer})
+      }
+      // Fake some cognition
+      setTimeout(computerTurn, delay, squares, currentPlayer)
+    }
   }
   toggleSinglePlayerMode() {
     this.setState({

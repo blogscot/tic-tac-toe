@@ -1,6 +1,4 @@
-import {
-  GameAI
-} from './ai'
+import GameAI from './ai'
 
 describe('Verify artifical intelligence', () => {
 
