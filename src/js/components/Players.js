@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const NumberOfPlayers = ({ singlePlayerMode, onClick }) => {
+const NumberOfPlayers = ({ twoPlayerMode, onClick }) => {
   return (
     <p
       onClick={onClick} 
       style={playersStyle}>
       Mode:
-      { singlePlayerMode 
-        ? <a href="#"> Single Player</a>
-        : <a href="#"> Two Player</a> }
+      { twoPlayerMode 
+        ? <a href="#"> Player vs Player</a>
+        : <a href="#"> Player vs Computer</a> }
     </p>
   )
 }
@@ -21,7 +21,7 @@ let playersStyle = {
 }
 
 NumberOfPlayers.propTypes = {
-  singlePlayerMode: PropTypes.bool.isRequired,
+  twoPlayerMode: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired
 }
 

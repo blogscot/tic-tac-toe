@@ -15,18 +15,18 @@ export default class Board extends React.Component {
     super()
     this.state = {
       squares: Array(9).fill(null),
-      singlePlayerMode: true,
+      twoPlayerMode: false,
       currentPlayer: 'O'
     }
   }
   playerTurn(index) {
     // React relies on immutable updates, so make a copy
     const squares = this.state.squares.slice()
-    const singlePlayerMode = this.state.singlePlayerMode
+    const twoPlayerMode = this.state.twoPlayerMode
 
     if (squares[index] || findWinner(squares)) { return }
 
-    let currentPlayer = singlePlayerMode 
+    let currentPlayer = twoPlayerMode 
       ? nextPlayer(this.state.currentPlayer)
       : 'X'
     
@@ -34,7 +34,7 @@ export default class Board extends React.Component {
     this.setState({ squares, currentPlayer })
 
     // In two player mode human player gets to go first
-    if (!singlePlayerMode) {
+    if (!twoPlayerMode) {
       let delay = Math.floor(Math.random() * 1000) + 300
       const computerTurn = (squares, currentPlayer) => {
         let {bestMove} = new GameAI(squares, 'X')
@@ -45,9 +45,9 @@ export default class Board extends React.Component {
       setTimeout(computerTurn, delay, squares, currentPlayer)
     }
   }
-  toggleSinglePlayerMode() {
+  toggleTwoPlayerMode() {
     this.setState({
-      singlePlayerMode: !this.state.singlePlayerMode
+      twoPlayerMode: !this.state.twoPlayerMode
     })
   }
   renderSquare(index) {
@@ -69,8 +69,8 @@ export default class Board extends React.Component {
     return (
       <div>
         <Players 
-          onClick={this.toggleSinglePlayerMode.bind(this)}
-          singlePlayerMode={this.state.singlePlayerMode}
+          onClick={this.toggleTwoPlayerMode.bind(this)}
+          twoPlayerMode={this.state.twoPlayerMode}
         />
         <div>
           <div style={rowStyle}>
