@@ -1,5 +1,5 @@
-import { 
-  findWinner, 
+import {
+  findWinner,
   movesLeft,
   nextPlayer,
   updateGameStatus } from './pure-functions'
@@ -79,7 +79,7 @@ describe('Moves left?', () => {
       'X','X','X']
 
     expect(movesLeft(squares)).toBeFalsy()
-  })    
+  })
 })
 
 describe('Update Game Status', () => {
@@ -99,7 +99,7 @@ describe('Update Game Status', () => {
       'X','O',null]
 
     expect(updateGameStatus(squares, 'X')).toBe('Next player: O')
-  })    
+  })
 
   test('A game to be a draw', () => {
     let squares = [
@@ -108,7 +108,7 @@ describe('Update Game Status', () => {
       'X','O','X']
 
     expect(updateGameStatus(squares, 'O')).toBe('Game is drawn')
-  })    
+  })
 })
 
 

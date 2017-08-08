@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 
 export default function Square({contents, onClick}) {
   return (
-    <div 
+    <div
       style={squareStyle}
-      onClick={onClick}>
+      onClick={onClick}
+    >
       {contents}
     </div>
   )

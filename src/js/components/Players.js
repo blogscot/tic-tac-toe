@@ -4,10 +4,11 @@ import PropTypes from 'prop-types'
 const NumberOfPlayers = ({ twoPlayerMode, onClick }) => {
   return (
     <p
-      onClick={onClick} 
-      style={playersStyle}>
+      onClick={onClick}
+      style={playersStyle}
+    >
       Mode:
-      { twoPlayerMode 
+      { twoPlayerMode
         ? <a href="#"> Player vs Player</a>
         : <a href="#"> Player vs Computer</a> }
     </p>
@@ -15,7 +16,7 @@ const NumberOfPlayers = ({ twoPlayerMode, onClick }) => {
 }
 
 let playersStyle = {
-  textAlign: 'center', 
+  textAlign: 'center',
   marginBottom: '10px',
   fontSize: '16px'
 }

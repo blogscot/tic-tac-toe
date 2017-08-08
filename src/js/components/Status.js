@@ -5,11 +5,12 @@ import { Button } from 'react-bootstrap'
 export default function Status({status, onClick}) {
   return (
     <div>
-      <div style={nextPlayerStyle}>{status}</div>     
+      <div style={nextPlayerStyle}>{status}</div>
       <div style={nextPlayerStyle}>
-        <Button 
-          bsStyle="primary" 
-          onClick={onClick}> Restart </Button>
+        <Button
+          bsStyle="primary"
+          onClick={onClick}
+        > Restart </Button>
       </div>
     </div>
   )

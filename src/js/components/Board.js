@@ -4,9 +4,8 @@ import Square from './Square'
 import Status from './Status'
 import Players from './Players'
 import GameAI from '../services/ai'
-import { 
-  findWinner, 
-  movesLeft,
+import {
+  findWinner,
   nextPlayer,
   updateGameStatus } from './pure-functions'
 
@@ -26,10 +25,10 @@ export default class Board extends React.Component {
 
     if (squares[index] || findWinner(squares)) { return }
 
-    let currentPlayer = twoPlayerMode 
+    let currentPlayer = twoPlayerMode
       ? nextPlayer(this.state.currentPlayer)
       : 'X'
-    
+
     squares[index] = currentPlayer
     this.setState({ squares, currentPlayer })
 
@@ -51,7 +50,7 @@ export default class Board extends React.Component {
     })
   }
   renderSquare(index) {
-    return ( 
+    return (
       <Square
         onClick={() => this.playerTurn(index)}
         contents={this.state.squares[index]}
@@ -59,7 +58,7 @@ export default class Board extends React.Component {
     )
   }
   resetGame() {
-    this.setState({ 
+    this.setState({
       squares: Array(9).fill(null),
       currentPlayer: 'O'
     })
@@ -68,7 +67,7 @@ export default class Board extends React.Component {
     let status = updateGameStatus(this.state.squares, this.state.currentPlayer)
     return (
       <div>
-        <Players 
+        <Players
           onClick={this.toggleTwoPlayerMode.bind(this)}
           twoPlayerMode={this.state.twoPlayerMode}
         />
@@ -89,9 +88,10 @@ export default class Board extends React.Component {
             {this.renderSquare(8)}
           </div>
         </div>
-        <Status 
-          status={status} 
-          onClick={() => this.resetGame()}/>
+        <Status
+          status={status}
+          onClick={() => this.resetGame()}
+        />
       </div>
     )
   }
