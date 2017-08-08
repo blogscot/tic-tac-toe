@@ -33,7 +33,7 @@ describe('Verify artifical intelligence', () => {
     expect(computer.getScore(null),3).toBe(0)
   })
 
-  test('find optimal minmax value with single option', () => {
+  test('find optimal X minimax value with a single choice', () => {
     let game = [
       'X','O','X',
       'O','X','O',
@@ -43,7 +43,27 @@ describe('Verify artifical intelligence', () => {
     expect(bestMove).toBe(6)
   })
 
-  test('find optimal minmax value with multiple options', () => {
+  test('find optimal X minimax value with two choices', () => {
+    let game = [
+      'X','O','X',
+      null,'X','O',
+      null,'X','O']
+    let { bestMove }  = new GameAI(game, 'X')
+    
+    expect(bestMove).toBe(6)
+  })
+
+  test('find optimal O minimax value with two choices', () => {
+    let game = [
+      'X','O','X',
+      null,'X','O',
+      null,'X','O']
+    let { bestMove }  = new GameAI(game, 'O')
+    
+    expect(bestMove).toBe(6)
+  })
+
+  test('find optimal X minimax value with multiple choices', () => {
     let game = [
       null,'X','O',
       'X',null,null,
@@ -53,6 +73,14 @@ describe('Verify artifical intelligence', () => {
     expect(bestMove).toBe(5)
   })
 
-  // TODO test GameAI with 'O'
+  test('find optimal O minimax value with multiple choices', () => {
+    let game = [
+      'X',null,'X',
+      'O',null,null,
+      null,null,null]
+    let { bestMove }  = new GameAI(game, 'O')
+    
+    expect(bestMove).toBe(1)
+  })  
 
 })

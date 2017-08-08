@@ -48,7 +48,7 @@ export class GameAI {
       }
     }
 
-    if (depth === 0 && player === 'X') {
+    if (depth === 0) {
       this.bestMove = optimalMove
     }
     return result
@@ -63,10 +63,10 @@ export class GameAI {
     return depth - 10
   }
 
-  getFreePositions (grid) {
+  getFreePositions (game) {
     let stack = []
-    for (let i = 0; i < grid.length; i++) {
-      if (grid[i] === null) {
+    for (let i = 0; i < game.length; i++) {
+      if (game[i] === null) {
         stack.push(i)
       }
     }
