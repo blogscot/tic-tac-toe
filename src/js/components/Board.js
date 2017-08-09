@@ -41,7 +41,7 @@ export default class Board extends React.Component {
     if (!twoPlayerMode) {
       let delay = Math.floor(Math.random() * 1000) + 300
       const computerTurn = (squares, currentPlayer) => {
-        let { bestMove } = new GameAI(squares, "X")
+        let { bestMove } = new GameAI(squares, "O")
         squares[bestMove] = "O"
         this.setState({ squares, currentPlayer })
       }
