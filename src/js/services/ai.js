@@ -1,21 +1,21 @@
-import { 
-  findWinner, 
-  movesLeft, 
-  nextPlayer } from '../components/pure-functions'
+// @flow
+import { findWinner, movesLeft, nextPlayer } from "../components/pure-functions"
 
-/* 
+/*
   GameAI calculates the optimal position for either player,
   'X' or 'O' upon constuction.
 */
 
 export default class GameAI {
-  constructor (game, player) {
+  bestMove: number | null
+  minimax: (Array<string>, string, number) => number
+  constructor(game: Array<string>, player: string) {
     this.bestMove = null
     this.minimax(game, player, 0)
   }
 
-  minimax (game, player, depth = 0) {
-    let winnerResult = findWinner(game)
+  minimax(game: Array<string>, player: string, depth: number = 0): number {
+    let winnerResult: string = findWinner(game)
 
     if (winnerResult !== null) {
       return this.getScore(winnerResult, depth)
@@ -30,10 +30,10 @@ export default class GameAI {
     let opponent = nextPlayer(player)
 
     availableMoves.forEach(move => {
-      let clonedGame = game.slice()
+      let clonedGame: Array<string> = game.slice()
       clonedGame[move] = player
 
-      let result = this.minimax(clonedGame, opponent, depth + 1)
+      let result: number = this.minimax(clonedGame, opponent, depth + 1)
       stack.push(result)
     })
 
@@ -41,8 +41,10 @@ export default class GameAI {
     let optimalMove = availableMoves[0]
 
     for (let i = 1; i < stack.length; i++) {
-      if ((stack[i] > result && player === 'X') ||
-          (stack[i] < result && player === 'O')) {
+      if (
+        (stack[i] > result && player === "X") ||
+        (stack[i] < result && player === "O")
+      ) {
         result = stack[i]
         optimalMove = availableMoves[i]
       }
@@ -53,9 +55,9 @@ export default class GameAI {
     }
     return result
   }
-  
-  getScore (result, depth) {
-    if (result === 'X') {
+
+  getScore(result: string, depth: number) {
+    if (result === "X") {
       return 10 - depth
     } else if (result === null) {
       return 0
@@ -63,8 +65,8 @@ export default class GameAI {
     return depth - 10
   }
 
-  getFreePositions (game) {
-    let stack = []
+  getFreePositions(game: Array<string>) {
+    let stack: Array<number> = []
     for (let i = 0; i < game.length; i++) {
       if (game[i] === null) {
         stack.push(i)
@@ -72,5 +74,4 @@ export default class GameAI {
     }
     return stack
   }
-
 }

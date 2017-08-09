@@ -1,13 +1,11 @@
-import React from 'react'
+// @flow
+import React from "react"
 
-import Square from './Square'
-import Status from './Status'
-import Players from './Players'
-import GameAI from '../services/ai'
-import {
-  findWinner,
-  nextPlayer,
-  updateGameStatus } from './pure-functions'
+import Square from "./Square"
+import Status from "./Status"
+import Players from "./Players"
+import GameAI from "../services/ai"
+import { findWinner, nextPlayer, updateGameStatus } from "./pure-functions"
 
 export default class Board extends React.Component {
   constructor() {
@@ -15,19 +13,26 @@ export default class Board extends React.Component {
     this.state = {
       squares: Array(9).fill(null),
       twoPlayerMode: false,
-      currentPlayer: 'O'
+      currentPlayer: "O"
     }
   }
-  playerTurn(index) {
+  state: {
+    squares: Array<string>,
+    twoPlayerMode: boolean,
+    currentPlayer: string
+  }
+  playerTurn(index: number) {
     // React relies on immutable updates, so make a copy
     const squares = this.state.squares.slice()
     const twoPlayerMode = this.state.twoPlayerMode
 
-    if (squares[index] || findWinner(squares)) { return }
+    if (squares[index] || findWinner(squares)) {
+      return
+    }
 
     let currentPlayer = twoPlayerMode
       ? nextPlayer(this.state.currentPlayer)
-      : 'X'
+      : "X"
 
     squares[index] = currentPlayer
     this.setState({ squares, currentPlayer })
@@ -36,9 +41,9 @@ export default class Board extends React.Component {
     if (!twoPlayerMode) {
       let delay = Math.floor(Math.random() * 1000) + 300
       const computerTurn = (squares, currentPlayer) => {
-        let {bestMove} = new GameAI(squares, 'X')
-        squares[bestMove] = 'O'
-        this.setState({squares, currentPlayer})
+        let { bestMove } = new GameAI(squares, "X")
+        squares[bestMove] = "O"
+        this.setState({ squares, currentPlayer })
       }
       // Fake some cognition
       setTimeout(computerTurn, delay, squares, currentPlayer)
@@ -49,7 +54,7 @@ export default class Board extends React.Component {
       twoPlayerMode: !this.state.twoPlayerMode
     })
   }
-  renderSquare(index) {
+  renderSquare(index: number) {
     return (
       <Square
         onClick={() => this.playerTurn(index)}
@@ -60,7 +65,7 @@ export default class Board extends React.Component {
   resetGame() {
     this.setState({
       squares: Array(9).fill(null),
-      currentPlayer: 'O'
+      currentPlayer: "O"
     })
   }
   render() {
@@ -88,8 +93,7 @@ export default class Board extends React.Component {
             {this.renderSquare(8)}
           </div>
         </div>
-        <Status
-          status={status}
+        <Status status={status}
           onClick={() => this.resetGame()}
         />
       </div>
@@ -98,6 +102,6 @@ export default class Board extends React.Component {
 }
 
 let rowStyle = {
-  display: 'flex',
-  justifyContent: 'center'
+  display: "flex",
+  justifyContent: "center"
 }
