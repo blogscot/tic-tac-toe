@@ -76,7 +76,7 @@ export default class Board extends React.Component {
           onClick={this.toggleTwoPlayerMode.bind(this)}
           twoPlayerMode={this.state.twoPlayerMode}
         />
-        <div>
+        <div style={boxStyle}>
           <div style={rowStyle}>
             {this.renderSquare(0)}
             {this.renderSquare(1)}
@@ -104,4 +104,10 @@ export default class Board extends React.Component {
 let rowStyle = {
   display: "flex",
   justifyContent: "center"
+}
+
+let boxStyle = {
+  margin: "0 auto",
+  width: "300px",
+  boxShadow: "0 8px 12px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
 }

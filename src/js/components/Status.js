@@ -17,10 +17,11 @@ export default function Status({
         {status}
       </div>
       <div style={nextPlayerStyle}>
-        <Button bsStyle="primary"
+        <Button bsSize="large"
+          bsStyle="primary"
           onClick={onClick}
         >
-          {" "}Restart{" "}
+          Restart
         </Button>
       </div>
     </div>
@@ -30,7 +31,10 @@ export default function Status({
 let nextPlayerStyle = {
   display: "flex",
   justifyContent: "center",
-  fontSize: "28px"
+  margin: "5px",
+  fontFamily: "palatino",
+  fontSize: "28px",
+  textShadow: "0 2px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.16)"
 }
 
 Status.propTypes = {
